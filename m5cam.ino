@@ -44,6 +44,13 @@
 #include <lwip/sockets.h>
 #include "camera.h"
 
+#if __has_include("secrets.h")
+#include "secrets.h"
+#else
+#define WIFI_SID "yourwifisid"
+#define WIFI_PWD "yourwifipassword"
+#endif
+
 WiFiServer server(80);
 
 void serve()
@@ -181,8 +188,15 @@ void setup() {
       return;
   }
 
-  ESP_LOGI("Starting WiFi AP m5cam");
-  WiFi.softAP("m5cam");
+  WiFi.begin(WIFI_SSID, WIFI_PASS);
+  Serial.print("Waiting for WiFi... ");
+
+  while(WiFi.status() != WL_CONNECTED) {
+      Serial.print(".");
+      delay(500);
+  }
+
+  Serial.println("");
 
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
