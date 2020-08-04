@@ -15,9 +15,9 @@
 #define CONFIG_ESP32_DEFAULT_CPU_FREQ_MHZ 240
 #define CONFIG_MEMMAP_SMP y
 #define CONFIG_TASK_WDT n
-#define CONFIG_LOG_DEFAULT_LEVEL_INFO y
-#define CONFIG_LOG_DEFAULT_LEVEL 3
-#define CONFIG_D0 17
+#define CONFIG_LOG_DEFAULT_LEVEL_DEBUG y
+#define CONFIG_LOG_DEFAULT_LEVEL 5
+#define CONFIG_D0 32
 #define CONFIG_D1 35
 #define CONFIG_D2 34
 #define CONFIG_D3 5
@@ -27,15 +27,15 @@
 #define CONFIG_D7 19
 #define CONFIG_XCLK 27
 #define CONFIG_PCLK 21
-#define CONFIG_VSYNC 22
+#define CONFIG_VSYNC 25
 #define CONFIG_HREF 26
-#define CONFIG_SDA 25
+#define CONFIG_SDA 22
 #define CONFIG_SCL 23
 #define CONFIG_RESET 15
 #define CONFIG_XCLK_FREQ 20000000
 #define CAMERA_PIXEL_FORMAT CAMERA_PF_GRAYSCALE
 #define CAMERA_FRAME_SIZE CAMERA_FS_SVGA
-#define CAMERA_LED_GPIO 16
+#define CAMERA_LED_GPIO 14
 
 
 #include <WiFi.h>
@@ -193,4 +193,9 @@ void setup() {
 
 void loop() {
   serve();
+  /*Serial.println("Blink");
+  digitalWrite(CAMERA_LED_GPIO, HIGH);
+  delay(1000);
+  digitalWrite(CAMERA_LED_GPIO, LOW);
+  delay(1000);*/
 }
